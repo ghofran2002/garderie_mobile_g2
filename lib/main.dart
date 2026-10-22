@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'splash_screen.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,7 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ma Garderie',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorSchemeSeed: Colors.orange, useMaterial3: true),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        useMaterial3: true,
+      ),
       home: const SplashScreen(),
     );
   }
