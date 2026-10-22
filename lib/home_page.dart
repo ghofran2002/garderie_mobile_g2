@@ -17,14 +17,26 @@ class _HomePageState extends State<HomePage> {
     {"id": 5, "titre": "Fruits frais", "description": "Une sélection de fruits de saison", "icone": "🍎"},
   ];
 
+  void _msg(String text) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(text)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ma Garderie'),
         actions: [
-          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.notifications), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () => _msg('Rechercher un menu'),
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () => _msg('Aucune notification'),
+          ),
         ],
       ),
       drawer: Drawer(
@@ -42,7 +54,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _msg('Ajouter un menu'),
         child: const Icon(Icons.add),
       ),
       body: Column(
@@ -64,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                     leading: Text(m['icone'], style: const TextStyle(fontSize: 32)),
                     title: Text(m['titre']),
                     subtitle: Text(m['description']),
-                    onTap: () {},
+                    onTap: () => _msg(m['titre']),
                   ),
                 );
               },
@@ -83,6 +95,7 @@ class _HomePageState extends State<HomePage> {
       onTap: () {
         setState(() => _selected = index);
         Navigator.pop(context);
+        _msg('$label sélectionné');
       },
     );
   }
